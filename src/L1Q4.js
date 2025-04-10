@@ -1,48 +1,47 @@
-class conversor{
-
-    constructor(tam = 20){
+class conversor {
+    constructor(tam = 20) {
         this.maxSize = tam;
         this.dados = [];
         this.topo = -1;
     }
 
-    push(dado){
-        if(this.isFull()){
+    push(dado) {
+        if (this.isFull()) {
             throw new Error("Overflow");
-        }else{
+        } else {
             this.dados[++this.topo] = dado;
         }
     }
 
-    pop(){
-        if(this.isEmpty()){
+    pop() {
+        if (this.isEmpty()) {
             throw new Error("Underflow");
-        }else{
+        } else {
             return this.dados[this.topo--];
         }
     }
 
-    isFull(){
-        if(this.maxSize === this.topo){
-            return true;
-        }
+    isFull() {
+        return this.topo === this.maxSize - 1;
     }
 
-    isEmpty(){
+    isEmpty() {
         return this.topo === -1;
     }
 
-    converte(numero){
+    converte(numero) {
         let resto;
         let resultado = "";
-        while(numero > 0){
+        while (numero > 0) {
             resto = Math.floor(numero % 2);
             this.push(resto);
-            numero = Math.floor(numero /2);
+            numero = Math.floor(numero / 2);
         }
-        while(!this.isEmpty()){
-            resultado +- this.pop.toString();
+
+        while (!this.isEmpty()) {
+            resultado += this.pop().toString();
         }
+
         return resultado;
     }
 }
